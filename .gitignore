@@ -1,0 +1,45 @@
+#wicket-iziToast
+app-package/*/webapp/KEN_ALL.*
+app-package/*/webapp/index*
+app-package/*/webapp/*jre.zip
+app-package/*/webapp/*.db
+
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+
+# Eclipse
+.project
+.classpath
+.settings
+.sts4-cache
+
+# Idea
+.idea
+*.iml
+*.iws
+*.ipr
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Gradle
+.gradle
+!gradle-wrapper.jar
+
+# Maven
+target
+
+# Build
+out
+build
+bin
+
+# Other
+*.log
+*.swp
+*.bak
