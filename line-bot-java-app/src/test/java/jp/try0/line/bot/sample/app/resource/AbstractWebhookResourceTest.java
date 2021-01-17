@@ -151,7 +151,7 @@ public class AbstractWebhookResourceTest {
 		AbstractWebhookResource res = new AbstractWebhookResource() {
 
 			@Override
-			protected ReplyMessage onReceiveDefaultMessageEvent(Event event) {
+			protected ReplyMessage onReceiveEvent(Event event) {
 				// 処理されるイベントを除去していく
 				uncalledEvents.remove(event);
 				return null;

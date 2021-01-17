@@ -201,91 +201,91 @@ public abstract class AbstractWebhookResource {
 	}
 
 	protected ReplyMessage onReceiveTextMessageEvent(MessageEvent<TextMessageContent> event) {
-		return onReceiveDefaultMessageEvent(event);
+		return onReceiveEvent(event);
 	}
 
 	protected ReplyMessage onReceiveImageMessageEvent(MessageEvent<ImageMessageContent> event) {
-		return onReceiveDefaultMessageEvent(event);
+		return onReceiveEvent(event);
 	}
 
 	protected ReplyMessage onReceiveLocationMessageEvent(MessageEvent<LocationMessageContent> event) {
-		return onReceiveDefaultMessageEvent(event);
+		return onReceiveEvent(event);
 	}
 
 	protected ReplyMessage onReceiveStickerMessageEvent(MessageEvent<StickerMessageContent> event) {
-		return onReceiveDefaultMessageEvent(event);
+		return onReceiveEvent(event);
 	}
 
 	protected ReplyMessage onReceiveFileMessageEvent(MessageEvent<FileMessageContent> event) {
-		return onReceiveDefaultMessageEvent(event);
+		return onReceiveEvent(event);
 	}
 
 	protected ReplyMessage onReceiveUnknownMessageEvent(MessageEvent<UnknownMessageContent> event) {
-		return onReceiveDefaultMessageEvent(event);
+		return onReceiveEvent(event);
 	}
 
 	protected ReplyMessage onReceiveAudioMessageEvent(MessageEvent<AudioMessageContent> event) {
-		return onReceiveDefaultMessageEvent(event);
+		return onReceiveEvent(event);
 	}
 
 	protected ReplyMessage onReceiveVideoMessageEvent(MessageEvent<VideoMessageContent> event) {
-		return onReceiveDefaultMessageEvent(event);
+		return onReceiveEvent(event);
 	}
 
 	protected void onReceiveUnknownEvent(UnknownEvent event) {
-		onReceiveDefaultMessageEvent(event);
+		onReceiveEvent(event);
 	}
 
 	protected ReplyMessage onReceiveThingsEvent(ThingsEvent event) {
-		return onReceiveDefaultMessageEvent(event);
+		return onReceiveEvent(event);
 	}
 
 	protected ReplyMessage onReceiveVideoPlayCompleteEvent(VideoPlayCompleteEvent event) {
-		return onReceiveDefaultMessageEvent(event);
+		return onReceiveEvent(event);
 	}
 
 	protected void onReceiveUnsendEvent(UnsendEvent event) {
-		onReceiveDefaultMessageEvent(event);
+		onReceiveEvent(event);
 	}
 
 	protected ReplyMessage onReceiveMemberJoinedEvent(MemberJoinedEvent event) {
-		return onReceiveDefaultMessageEvent(event);
+		return onReceiveEvent(event);
 	}
 
 	protected void onReceiveMemberLeftEvent(MemberLeftEvent event) {
-		onReceiveDefaultMessageEvent(event);
+		onReceiveEvent(event);
 	}
 
 	protected void onReceiveUnfollowEvent(UnfollowEvent event) {
-		onReceiveDefaultMessageEvent(event);
+		onReceiveEvent(event);
 	}
 
 	protected ReplyMessage onReceiveFollowEvent(FollowEvent event) {
-		return onReceiveDefaultMessageEvent(event);
+		return onReceiveEvent(event);
 	}
 
 	protected ReplyMessage onReceiveJoinEvent(JoinEvent event) {
-		return onReceiveDefaultMessageEvent(event);
+		return onReceiveEvent(event);
 	}
 
 	protected void onReceiveLeaveEvent(LeaveEvent event) {
-		onReceiveDefaultMessageEvent(event);
+		onReceiveEvent(event);
 	}
 
 	protected ReplyMessage onReceivePostbackEvent(PostbackEvent event) {
-		return onReceiveDefaultMessageEvent(event);
+		return onReceiveEvent(event);
 	}
 
 	protected ReplyMessage onReceiveBeaconEvent(BeaconEvent event) {
-		return onReceiveDefaultMessageEvent(event);
+		return onReceiveEvent(event);
 
 	}
 
 	protected ReplyMessage onReceiveAccountLinkEvent(AccountLinkEvent event) {
-		return onReceiveDefaultMessageEvent(event);
+		return onReceiveEvent(event);
 	}
 
-	protected ReplyMessage onReceiveDefaultMessageEvent(Event event) {
+	protected ReplyMessage onReceiveEvent(Event event) {
 		return null;
 	}
 
