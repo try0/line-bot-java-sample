@@ -166,13 +166,17 @@ public class WebhookResource extends AbstractWebhookResource {
 
 			UserProfileResponse userProfile = getUserProfile(event.getSource().getUserId());
 
+			// https://developers.line.biz/ja/docs/messaging-api/linking-accounts/#%E9%80%A3%E6%90%BA%E8%A7%A3%E9%99%A4%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6
+			// ユーザーに連携解除機能を必ず提供すること
+			// ユーザーがアカウントを連携するときに、連携解除機能があることを通知すること
+
 			// 自社サービスのユーザー認証画面を表示するボタン付きのメッセージを返す
 			List<Action> actions = Arrays
 					.asList(new URIAction("連携する",
 							URI.create(String.format(YOUR_SERVICE_AUTH_FORM_URL_FORMAT, lineLinkToken)),
 							null));
 
-			String botResponseText = "こんにちは！" + userProfile.getDisplayName() + "\n" + "LINEと連携するアカウント情報をフォームに入力してください";
+			String botResponseText = "こんにちは！" + userProfile.getDisplayName() + "\n" + "LINEと連携するアカウント情報をフォームに入力してください。\n連携はいつでも解除可能です。";
 			TemplateMessage templateMessage = new TemplateMessage("アカウント連携",
 					new ButtonsTemplate(null, "アカウント連携", botResponseText, actions));
 
