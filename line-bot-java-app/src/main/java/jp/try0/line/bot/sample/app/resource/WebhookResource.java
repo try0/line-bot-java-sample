@@ -119,7 +119,7 @@ public class WebhookResource extends AbstractWebhookResource {
 	}
 
 	/**
-	 * ユーザーがタイムラインにメッセージを送信したときに実行される。
+	 * ユーザーがメッセージを送信したときに実行される。
 	 */
 	@Override
 	protected ReplyMessage onReceiveTextMessageEvent(MessageEvent<TextMessageContent> event) {
