@@ -3,9 +3,7 @@ package jp.try0.line.bot.sample.app.resource;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.URI;
-import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
-import java.util.Base64;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -78,11 +76,6 @@ public class WebhookResource extends AbstractWebhookResource {
 
 		public String lineLinkToken;
 		public String lineUserId;
-
-		public String getBase64EncodedYourCreatedNonce() {
-			byte[] enced = Base64.getEncoder().encode(yourCreatedNonce.getBytes(StandardCharsets.UTF_8));
-			return new String(enced, StandardCharsets.UTF_8);
-		}
 
 		public void logInfo() {
 			logger.info(String.format(
@@ -166,6 +159,8 @@ public class WebhookResource extends AbstractWebhookResource {
 
 			UserProfileResponse userProfile = getUserProfile(event.getSource().getUserId());
 
+			TextMessage helloMessage = new TextMessage("こんにちは！" + userProfile.getDisplayName() + "さん");
+
 			// https://developers.line.biz/ja/docs/messaging-api/linking-accounts/#%E9%80%A3%E6%90%BA%E8%A7%A3%E9%99%A4%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6
 			// ユーザーに連携解除機能を必ず提供すること
 			// ユーザーがアカウントを連携するときに、連携解除機能があることを通知すること
@@ -176,11 +171,14 @@ public class WebhookResource extends AbstractWebhookResource {
 							URI.create(String.format(YOUR_SERVICE_AUTH_FORM_URL_FORMAT, lineLinkToken)),
 							null));
 
-			String botResponseText = "こんにちは！" + userProfile.getDisplayName() + "\n" + "LINEと連携するアカウント情報をフォームに入力してください。\n連携はいつでも解除可能です。";
+			String botResponseText = "LINEと連携するアカウント情報をフォームに入力してください。";
 			TemplateMessage templateMessage = new TemplateMessage("アカウント連携",
 					new ButtonsTemplate(null, "アカウント連携", botResponseText, actions));
 
-			ReplyMessage rep = new ReplyMessage(event.getReplyToken(), Arrays.asList(templateMessage));
+			TextMessage textMessage = new TextMessage("連携はいつでも解除可能です。");
+
+			ReplyMessage rep = new ReplyMessage(event.getReplyToken(),
+					Arrays.asList(helloMessage, templateMessage, textMessage));
 
 			return rep;
 		} catch (Exception e) {
@@ -299,11 +297,12 @@ public class WebhookResource extends AbstractWebhookResource {
 
 		account.logInfo();
 
-		userMapping.put(account.getBase64EncodedYourCreatedNonce(), account);
+		// アカウント連携イベントでNonceが受け取れるので、Key:Nonce　Value：ユーザー情報がいい
+		userMapping.put(account.yourCreatedNonce, account);
 
 		// LINEへリダイレクト 連携リクエスト送信
 		String url = String.format(LINE_ACCOUNT_LINK_URL_FORMAT,
-				account.lineLinkToken, account.getBase64EncodedYourCreatedNonce());
+				account.lineLinkToken, account.yourCreatedNonce);
 
 		logger.info(url);
 
